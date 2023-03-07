@@ -1,10 +1,11 @@
 #Importa libreria con todo el contenido
 from tkinter import*
+import pandas as pd
 #Asignacion interface
 root = Tk()
 #Personalizacion ventana
 root.title("SCI") #titulo
-root.geometry("700x500") #Dimensiones
+root.geometry("700x800") #Dimensiones
 #root.iconbitmap("SCI.ico") #Icono
 root.resizable(0,0) #Desactivamos opcion para modificar ventana
 root.config(bg="grey",cursor="circle") #color y tipo de cursor
@@ -34,13 +35,13 @@ etiqueta2.place(x=20,y=100)
 #Input
 
 name = StringVar()
-name.set("Name")
+#name.set("Name")
 saludo = StringVar()
 
 texto1 = Label(root,text="Ingresa tu nombre", bd=4,font="arial 12") #texto
-texto1.place(x=20,y=180)
+texto1.place(x=20,y=150)
 input1 = Entry(root,textvariable=name,bd=4,font="arial 12")
-input1.place(x=180,y=180)
+input1.place(x=180,y=150)
 
 def saludos():
     print("Greatings to " + name.get())
@@ -49,9 +50,82 @@ def saludos():
     
 
 buttonName = Button(root,text="Saludame!",bd=5,command = saludos,bg="red")
-buttonName.place(x=20,y=220)
+buttonName.place(x=20,y=200)
 out1 = Entry(root,text="Greatings to " + name.get(),state="disable",textvariable=saludo,bd=4,font="arial 12") #State inmodificable
-out1.place(x=180, y=220)
+out1.place(x=180, y=200)
+
+#DATAFRAME
+Nombre = StringVar()
+nombre = StringVar()
+Nombre2 = StringVar()
+Apellido = StringVar()
+Apellido2 = StringVar()
+Sede = StringVar()
+Folio = StringVar()
+Registro = StringVar()
+Vigencia = StringVar()
+Empleado = StringVar()
+
+texto1 = Label(root,text="Nombre", bd=4,font="arial 12")
+texto1.place(x=20,y=250)
+input1 = Entry(root,textvariable=Nombre,bd=4,font="arial 12")
+input1.place(x=180,y=250)
+texto2 = Label(root,text="Nombre2", bd=4,font="arial 12")
+texto2.place(x=20,y=300)
+input2 = Entry(root,textvariable=Nombre2,bd=4,font="arial 12")
+input2.place(x=180,y=300)
+texto3 = Label(root,text="Apellido", bd=4,font="arial 12")
+texto3.place(x=20,y=350)
+input3 = Entry(root,textvariable=Apellido,bd=4,font="arial 12")
+input3.place(x=180,y=350)
+texto4 = Label(root,text="Apellido2", bd=4,font="arial 12")
+texto4.place(x=20,y=400)
+input4 = Entry(root,textvariable=Apellido2,bd=4,font="arial 12")
+input4.place(x=180,y=400)
+texto5 = Label(root,text="Sede", bd=4,font="arial 12")
+texto5.place(x=20,y=450)
+input5 = Entry(root,textvariable=Sede,bd=4,font="arial 12")
+input5.place(x=180,y=450)
+texto6 = Label(root,text="Folio", bd=4,font="arial 12")
+texto6.place(x=20,y=500)
+input6 = Entry(root,textvariable=Folio,bd=4,font="arial 12")
+input6.place(x=180,y=500)
+texto7 = Label(root,text="Registro", bd=4,font="arial 12")
+texto7.place(x=20,y=550)
+input7 = Entry(root,textvariable=Registro,bd=4,font="arial 12")
+input7.place(x=180,y=550)
+texto8 = Label(root,text="Vigencia", bd=4,font="arial 12")
+texto8.place(x=20,y=600)
+input8 = Entry(root,textvariable=Vigencia,bd=4,font="arial 12")
+input8.place(x=180,y=600)
+texto9 = Label(root,text="Empleado", bd=4,font="arial 12")
+texto9.place(x=20,y=650)
+input9 = Entry(root,textvariable=Empleado,bd=4,font="arial 12")
+input9.place(x=180,y=650)
+
+def save():
+    datos = [
+        Nombre.get(),
+        Nombre2.get(),
+        Apellido.get(),
+        Apellido2.get(),
+        Sede.get(),
+        Folio.get(),
+        Registro.get(),
+        Vigencia.get(),
+        Empleado.get()
+    ]
+    print(datos)
+    DFDatosRaw = pd.DataFrame(datos)
+    print(DFDatosRaw)
+    DFDatosRaw2 = DFDatosRaw.transpose()
+    print(DFDatosRaw2)
+    
+
+buttonName = Button(root,text="Guardar Datos",bd=5,command = save,bg="green")
+buttonName.place(x=20,y=700)
+
 
 #Cierre de la ventana hasta que lo indiquemos
 root.mainloop()
+
